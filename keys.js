@@ -1,4 +1,4 @@
-console.log('this is loaded');
+console.log('this is loaded\n');
 
 var twitterKeys = {
   consumer_key: 'hbpvKWI9qLV9HsgvkLdcuH9zR',
@@ -7,4 +7,12 @@ var twitterKeys = {
   access_token_secret: 'oojivIGSQDLDxRWjjb5HZWXt8BhL7EWjxCTuIxzm4RPfh',
 }
 
-module.exports = twitterKeys;
+var spotifyKeys = {
+	id: '7663e6d56bb84a1e97c14cf6f4997636',
+	secret: '33e206a7af144c83bb1486be44ab5355'
+}
+
+module.exports = {
+	twitterKeys:twitterKeys,
+	spotifyKeys:spotifyKeys
+}
