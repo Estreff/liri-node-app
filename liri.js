@@ -5,17 +5,9 @@ var keys = require('./keys.js');
 var Spotify = require('node-spotify-api');
 
 	
-	var client = new Twitter({
-		consumer_key: keys.twitterKeys.consumer_key,
-		consumer_secret: keys.twitterKeys.consumer_secret,
-		access_token_key: keys.twitterKeys.access_token_key,
-		access_token_secret: keys.twitterKeys.access_token_secret
-	})
+	var client = new Twitter(keys.twitterKeys);
 
-	var spotify = new Spotify({
-	  id: keys.spotifyKeys.id,
-	  secret: keys.spotifyKeys.secret
-	});
+	var spotify = new Spotify(keys.spotifyKeys);
 
 var operator=process.argv[2];
 
@@ -89,7 +81,7 @@ function myTweets() {
 
 function selectSong(songName) {
 	var songName = process.argv[3];
-		var limit = 10;
+		var limit = 3;
 
 		if(!songName){
 			spotify.search({ type: 'track', query: 'The Sign Ace of Base', limit: limit}, function(err, data) {

@@ -6,17 +6,8 @@ var Spotify = require('node-spotify-api');
 var inquirer = require('inquirer');
 var colors = require('colors');
 	
-	var client = new Twitter({
-		consumer_key: keys.twitterKeys.consumer_key,
-		consumer_secret: keys.twitterKeys.consumer_secret,
-		access_token_key: keys.twitterKeys.access_token_key,
-		access_token_secret: keys.twitterKeys.access_token_secret
-	})
-
-	var spotify = new Spotify({
-	  id: keys.spotifyKeys.id,
-	  secret: keys.spotifyKeys.secret
-	});
+	var client = new Twitter(keys.twitterKeys);
+	var spotify = new Spotify(keys.spotifyKeys);
 
 	inquirer.
 	prompt([
@@ -60,7 +51,11 @@ var colors = require('colors');
 			        	}
 			      	])	
 			      	.then(function(omdb) {
-			      		selectMovie(omdb.movie);
+						if(!omdb.movie) {
+							selectMovie('Tomstone');
+						} else {
+							  selectMovie(omdb.movie);
+						}
 			      	})		    	
 		    	}
 		    	else if (operator == 'do-what-it-says') {
@@ -105,7 +100,7 @@ function myTweets() {
 	    // console.log(tweets[0]);
 		if (!error) {
 	      for (var i = 0; i < tweets.length; i++) {
-	      	console.log(`Created: ${tweets[i].created_at}\nTweet: ${tweets[i].text}\n`.blue);
+	      	console.log(`Created: ${tweets[i].created_at}\nTweet: ${tweets[i].text}\n`.cyan);
 	      }
 	    }
 	})
@@ -167,3 +162,4 @@ function selectMovie(movieName) {
 			  }
 		});
 }
+
